@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gudang/screens/login_screen.dart';
 import 'package:gudang/thema.dart';
+import 'app_router/route_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +12,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    late final _router = RoutePage();
+
+    return MaterialApp.router(
       theme: ThemaMaBukitAsam.light(),
-      home: const LoginPage(),
+      title: 'SIMAS',
+      routerDelegate: _router.router.routerDelegate,
+      routeInformationParser: _router.router.routeInformationParser,
+      routeInformationProvider: _router.router.routeInformationProvider,
     );
   }
 }
