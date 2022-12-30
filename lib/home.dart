@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
               if(_selectedTab == 0) {
                 context.push('/addAsset');
               } else {
-                Navigator.pushNamed(context, '/addMaintenance');
+                context.push('/addMaintenance');
               }
             },
         child: const Icon(Icons.add, color: Colors.white,),) : null ,
