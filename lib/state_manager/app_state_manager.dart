@@ -13,6 +13,7 @@ class AppStateManager extends ChangeNotifier{
   int _selectedTab = SimasTab.assets;
 
   bool get isLoggedIn => _loggedIn;
+
   int get getSelectedTab => _selectedTab;
 
   Future<void> initializeApp() async {
@@ -21,6 +22,7 @@ class AppStateManager extends ChangeNotifier{
 
   void login(String nrp, String password) async {
     _loggedIn = true;
+
     notifyListeners();
   }
   void logout() async {
@@ -32,4 +34,5 @@ class AppStateManager extends ChangeNotifier{
     _selectedTab = index;
     notifyListeners();
   }
+
 }

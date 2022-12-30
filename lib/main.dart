@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:gudang/home.dart';
+import 'package:gudang/state_manager/app_state_manager.dart';
 import 'package:gudang/thema.dart';
+import 'package:provider/provider.dart';
 import 'app_router/route_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  final appStateManager = AppStateManager();
+  runApp(MyApp(appStateManager: appStateManager,));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  final AppStateManager appStateManager;
+  const MyApp({Key? key, required this.appStateManager}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final _appRouter = RoutePage(widget.appStateManager);
   @override
   Widget build(BuildContext context) {
-    late final _router = RoutePage();
-
-    return MaterialApp.router(
+    return Provider(create: (context) => widget.appStateManager,
+    child: MaterialApp.router(
       theme: ThemaMaBukitAsam.light(),
-      title: 'SIMAS',
-      routerDelegate: _router.router.routerDelegate,
-      routeInformationParser: _router.router.routeInformationParser,
-      routeInformationProvider: _router.router.routeInformationProvider,
-    );
+      title: 'SIMMAS',
+      routerDelegate: _appRouter.router.routerDelegate,
+      routeInformationParser: _appRouter.router.routeInformationParser,
+      routeInformationProvider: _appRouter.router.routeInformationProvider,
+    ),);
   }
 }
+
 
