@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 
 class LocationScreen extends StatelessWidget {
@@ -6,6 +7,19 @@ class LocationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Lokasi'),
+      ),
+      body: const Center(
+        child: Text('Lokasi'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.push('/addLocation');
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }

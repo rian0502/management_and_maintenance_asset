@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:gudang/home.dart';
+import 'package:gudang/screens/add_category_screen.dart';
 import 'package:gudang/screens/assets_screen.dart';
 import 'package:gudang/screens/login_page.dart';
 import 'package:gudang/screens/maintenance_screen.dart';
@@ -7,6 +8,7 @@ import 'package:gudang/screens/manufactur_screen.dart';
 import 'package:gudang/screens/mechanic_screen.dart';
 import 'package:gudang/screens/model_screen.dart';
 import '../screens/add_asset_screen.dart';
+import '../screens/add_location_screen.dart';
 import '../screens/add_maintenance_screen.dart';
 import '../screens/categories_screen.dart';
 import '../screens/location_screen.dart';
@@ -57,10 +59,26 @@ class RoutePage {
             path: '/mechanic',
             name: 'mechanic',
             builder: (context, state) => const MechanicScreen()),
-        GoRoute(path: '/supplier', name: 'supplier', builder: (context, state) => const SupplierScreen()),
-        GoRoute(path: '/categories', name: 'categories', builder: (context, state) => const CategoriesScreen()),
-        GoRoute(path: '/location', name: 'location', builder: (context, state) => const LocationScreen()),
-
+        GoRoute(
+            path: '/supplier',
+            name: 'supplier',
+            builder: (context, state) => const SupplierScreen()),
+        GoRoute(
+            path: '/categories',
+            name: 'categories',
+            builder: (context, state) => const CategoriesScreen()),
+        GoRoute(
+            path: '/addCategory',
+            name: 'addCategory',
+            builder: (context, state) => const AddCategoryScreen()),
+        GoRoute(
+            path: '/location',
+            name: 'location',
+            builder: (context, state) => const LocationScreen()),
+        GoRoute(
+            path: '/addLocation',
+            name: 'addLocation',
+            builder: (context, state) => const AddLocationScreen()),
       ],
       redirect: (context, state) {
         if (state.location == '/addAsset' ||
