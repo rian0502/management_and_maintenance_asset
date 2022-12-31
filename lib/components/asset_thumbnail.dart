@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getwidget/components/list_tile/gf_list_tile.dart';
 
 
 class AssetThumbnail extends StatelessWidget {
@@ -6,8 +7,9 @@ class AssetThumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
+    return GFListTile(
+      titleText: 'Asset Name',
+      subTitleText: 'Asset Description',
     );
   }
 }

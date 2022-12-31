@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gudang/screens/assets_screen.dart';
-import 'package:gudang/screens/maintenance_screen.dart';
-import 'package:gudang/screens/settings_screen.dart';
-
-
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,46 +10,70 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedTab = 0;
-  
-  static List<Widget> pages = <Widget>[
-    AssetsScreen(),
-    MaintenanceScreen(),
-    SettingScreen()
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SIMAS'),
+        title: const Text('SIMAS'),
       ),
-      body: IndexedStack(
-        index: _selectedTab,
-        children: pages,
+      body: Center(
+        child: GridView.count(
+          crossAxisCount: 3,
+          padding: const EdgeInsets.only(top: 150, left: 20, right: 20),
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          children: [
+            menu('Aset', 'assets/images/aset.png', '/aset'),
+            menu('Model', 'assets/images/model.png', '/model'),
+            menu('Perbaikan', 'assets/images/maintenance.png', '/maintenance'),
+            menu('Pabrikan', 'assets/images/factory.png', '/manufacture'),
+            menu('Teknisi', 'assets/images/mechanic.png', '/mechanic'),
+            menu('Pemasok', 'assets/images/supplier.png', '/supplier'),
+            menu('Kategori', 'assets/images/categories.png', '/categories'),
+            menu('Lokasi', 'assets/images/location.png', '/location'),
+          ],
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
-        currentIndex: _selectedTab,
-        onTap: (index){
-          setState(() {
-            _selectedTab = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.luggage), label: 'Barang'),
-          BottomNavigationBarItem(icon: Icon(Icons.engineering), label: 'Perbaikan'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Pengaturan')
-        ],
+    );
+  }
+
+  Widget menu(String title, String image, String route) {
+    return InkWell(
+      onTap: () {
+        context.push(route);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              child: Image.asset(image),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              title,
+              style:  GoogleFonts.poppins(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            )
+          ],
+        ),
       ),
-        floatingActionButton: (_selectedTab) < 2 ? FloatingActionButton(
-            onPressed: (){
-              if(_selectedTab == 0) {
-                context.push('/addAsset');
-              } else {
-                context.push('/addMaintenance');
-              }
-            },
-        child: const Icon(Icons.add, color: Colors.white,),) : null ,
     );
   }
 }

@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
     child: MaterialApp.router(
       theme: ThemaMaBukitAsam.light(),
       title: 'SIMMAS',
+      debugShowCheckedModeBanner: false,
       routerDelegate: _appRouter.router.routerDelegate,
       routeInformationParser: _appRouter.router.routeInformationParser,
       routeInformationProvider: _appRouter.router.routeInformationProvider,
