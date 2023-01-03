@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gudang/state_manager/app_state_manager.dart';
+import 'package:gudang/state_manager/thema_state.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,11 +13,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool _isDark = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('SIMAS'),
+        actions: [
+          Switch(value: _isDark, onChanged: (value){
+            Provider.of<ThemaState>(context, listen: false).darkMode(value);
+            setState(() {
+              _isDark = value;
+            });
+          })
+        ],
       ),
       body: Center(
         child: GridView.count(
@@ -44,7 +56,7 @@ class _HomeState extends State<Home> {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(

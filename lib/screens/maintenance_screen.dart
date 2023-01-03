@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 
 class MaintenanceScreen extends StatefulWidget {
@@ -11,6 +12,19 @@ class MaintenanceScreen extends StatefulWidget {
 class _MaintenanceScreenState extends State<MaintenanceScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Maintenance'),
+      ),
+      body: const Center(
+        child: Text('Maintenance'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.push('/addMaintenance');
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }

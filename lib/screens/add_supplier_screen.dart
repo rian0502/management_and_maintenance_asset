@@ -33,7 +33,12 @@ class _AddSupplierScreenState extends State<AddSupplierScreen> {
               ),
             ),
             const SizedBox(height: 20,),
-            ElevatedButton(onPressed: (){}, child: Text('Simpan'))
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ElevatedButton(onPressed: (){}, child: Text('Simpan'))
+              ],
+            )
           ],
         ),
       ),

@@ -21,10 +21,12 @@ class AddCategoryScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('Simpan'),
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ElevatedButton(onPressed: () {}, child: Text('Simpan'))
+                ],
+              )
             ],
           ),
         ));

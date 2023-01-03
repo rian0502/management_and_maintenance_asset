@@ -93,15 +93,10 @@ class RoutePage {
         GoRoute(
             path: '/addLocation',
             name: 'addLocation',
-            builder: (context, state) => const AddLocationScreen()),
+            builder: (context, state) =>  AddLocationScreen()),
       ],
       redirect: (context, state) {
-        if (state.location == '/addAsset' ||
-            state.location == '/addMaintenance') {
-          if (appStateManager!.isLoggedIn == false) {
-            return '/login';
-          }
-        }
+
         return null;
       });
 }
