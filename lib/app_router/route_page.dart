@@ -10,6 +10,9 @@ import 'package:gudang/screens/model_screen.dart';
 import '../screens/add_asset_screen.dart';
 import '../screens/add_location_screen.dart';
 import '../screens/add_maintenance_screen.dart';
+import '../screens/add_manufactur_screen.dart';
+import '../screens/add_mehanic_screens.dart';
+import '../screens/add_supplier_screen.dart';
 import '../screens/categories_screen.dart';
 import '../screens/location_screen.dart';
 import '../screens/supplier_screen.dart';
@@ -25,12 +28,12 @@ class RoutePage {
       refreshListenable: appStateManager,
       initialLocation: '/',
       routes: [
-        GoRoute(path: '/', name: 'home', builder: (context, state) => Home()),
         GoRoute(
-          path: '/addAsset',
-          name: 'addAsset',
-          builder: (context, state) => const AddAssetScreen(),
-        ),
+            path: '/', name: 'home', builder: (context, state) => const Home()),
+        GoRoute(
+            path: '/addAsset',
+            name: 'addAsset',
+            builder: (context, state) => const AddAssetScreen()),
         GoRoute(
             path: '/addMaintenance',
             name: 'addMaintenance',
@@ -56,13 +59,25 @@ class RoutePage {
             name: 'manufacture',
             builder: (context, state) => const ManufacturerScreen()),
         GoRoute(
+            path: '/addManufacture',
+            name: 'addManufacture',
+            builder: (context, state) => const AddManufactureScreen()),
+        GoRoute(
             path: '/mechanic',
             name: 'mechanic',
             builder: (context, state) => const MechanicScreen()),
         GoRoute(
+            path: '/addMechanic',
+            name: 'addMechanic',
+            builder: (context, state) => const AddMechanicScreen()),
+        GoRoute(
             path: '/supplier',
             name: 'supplier',
             builder: (context, state) => const SupplierScreen()),
+        GoRoute(
+            path: '/addSupplier',
+            name: 'addSupplier',
+            builder: (context, state) => const AddSupplierScreen()),
         GoRoute(
             path: '/categories',
             name: 'categories',
@@ -87,5 +102,6 @@ class RoutePage {
             return '/login';
           }
         }
+        return null;
       });
 }
