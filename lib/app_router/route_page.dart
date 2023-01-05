@@ -89,7 +89,7 @@ class RoutePage {
         GoRoute(
             path: '/location',
             name: 'location',
-            builder: (context, state) => const LocationScreen()),
+            builder: (context, state) =>  LocationScreen()),
         GoRoute(
             path: '/addLocation',
             name: 'addLocation',

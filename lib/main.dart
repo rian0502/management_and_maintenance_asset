@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gudang/connection/api_service.dart';
 import 'package:gudang/state_manager/app_state_manager.dart';
 import 'package:gudang/state_manager/thema_state.dart';
 import 'package:gudang/thema.dart';
@@ -6,16 +7,19 @@ import 'package:provider/provider.dart';
 import 'app_router/route_page.dart';
 
 void main() async {
+  APIService.getAllLocation().then((value) => print(value.data![1].namaGedung));
   WidgetsFlutterBinding.ensureInitialized();
   final appStateManager = AppStateManager();
   runApp(MyApp(
     appStateManager: appStateManager,
+    formState: FormState(),
   ));
 }
 
 class MyApp extends StatefulWidget {
   final AppStateManager appStateManager;
-  const MyApp({Key? key, required this.appStateManager}) : super(key: key);
+  final FormState formState;
+  const MyApp({Key? key, required this.appStateManager, required this.formState}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -23,6 +27,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late final _appRouter = RoutePage(widget.appStateManager);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -33,6 +38,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
             create: (context) => widget.appStateManager
         ),
+
       ],
       child: Consumer<ThemaState>(
         builder: (context, themaState, child) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gudang/connection/api_service.dart';
 
 class AddLocationScreen extends StatelessWidget {
    AddLocationScreen({Key? key}) : super(key: key);
@@ -37,7 +39,20 @@ class AddLocationScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                ElevatedButton(onPressed: () {}, child: Text('Simpan'))
+                ElevatedButton(onPressed: () {
+                  if(_namaLokasiController.text.isEmpty || _lantaiController.text.isEmpty){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Nama Lokasi dan Lantai tidak boleh kosong'),
+                      ),
+                    );
+                  } else {
+                    //add location
+                    APIService.addLocation(_namaLokasiController.text, _lantaiController.text).then((value) => {
+                      context.pop()
+                    });
+                  }
+                }, child: Text('Simpan'))
               ],
             )
           ],
