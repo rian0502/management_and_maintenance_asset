@@ -87,24 +87,24 @@ class RoutePage {
         GoRoute(
             path: '/addCategory',
             name: 'addCategory',
-            builder: (context, state) =>  AddCategoryScreen()),
+            builder: (context, state) => AddCategoryScreen()),
         GoRoute(
             path: '/location',
             name: 'location',
-            builder: (context, state) =>  LocationScreen()),
+            builder: (context, state) => const LocationScreen()),
         GoRoute(
             path: '/addLocation',
             name: 'addLocation',
-            builder: (context, state) =>  AddLocationScreen()),
-        GoRoute(path: '/editLocation',
+            builder: (context, state) => AddLocationScreen()),
+        GoRoute(
+            path: '/editLocation',
             name: 'editLocation',
-            builder: (context, state){
+            builder: (context, state) {
               Data location = state.extra as Data;
               return EditLocationScreen(location: location);
             }),
       ],
       redirect: (context, state) {
-
         return null;
       });
 }

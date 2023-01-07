@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import '../models/categories.dart';
 import '../models/locations.dart';
+import '../models/manufacturer.dart';
 import '../models/mechanic.dart';
 import '../models/suppliers.dart';
 
@@ -102,6 +103,28 @@ class APIService{
     var dio = Dio();
     var request = await dio.post("${_BASE_URL}categories", data: {
       "nama_kategori": nama,
+    });
+    if (request.statusCode == 200){
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+  //manufacture
+  static Future<Manufacturer> getAllManufacturer() async{
+    var dio = Dio();
+    var request = await dio.get("${_BASE_URL}manufacturer");
+    if (request.statusCode == 200){
+      return Manufacturer.fromJson(request.data);
+    } else {
+      throw Exception("Failed to load data");
+    }
+  }
+
+  static Future<int> addManufacturer(String nama) async{
+    var dio = Dio();
+    var request = await dio.post("${_BASE_URL}manufacturer", data: {
+      "nama_manufactur": nama,
     });
     if (request.statusCode == 200){
       return 1;
