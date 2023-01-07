@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'app_router/route_page.dart';
 
 void main() async {
-  APIService.getAllLocation().then((value) => print(value.data![1].namaGedung));
   WidgetsFlutterBinding.ensureInitialized();
   final appStateManager = AppStateManager();
   runApp(MyApp(

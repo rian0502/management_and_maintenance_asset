@@ -23,13 +23,14 @@ class LocationScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
                   child: Card(
                       child: Slidable(
+                       key: Key(snapshot.data.data[index].uuid) ,
                       startActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       dismissible: DismissiblePane(onDismissed: () {}),
                       children: [
                         SlidableAction(
                           onPressed: (value) {
-                            print(snapshot.data.data![index].namaGedung);
+                            context.push('/editLocation', extra: snapshot.data.data![index]);
                           },
                           backgroundColor: const Color(0xFF21B7CA),
                           foregroundColor: Colors.white,
@@ -38,7 +39,7 @@ class LocationScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child:  ListTile(
+                      child:  ListTile(
                       title: Text(snapshot.data.data![index].namaGedung),
                       subtitle: Text('Lantai ${snapshot.data.data![index].lantai}'),
                     ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../connection/api_service.dart';
 
 class AddMechanicScreen extends StatefulWidget {
   const AddMechanicScreen({Key? key}) : super(key: key);
@@ -8,17 +11,20 @@ class AddMechanicScreen extends StatefulWidget {
 }
 
 class _AddMechanicScreenState extends State<AddMechanicScreen> {
+  final TextEditingController _nik = TextEditingController();
+  final TextEditingController _namaTeknisi = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Mechanic'),
+        title: const Text('Tambah Teknisi'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             TextField(
+              controller: _nik,
               keyboardType: TextInputType.number,
               maxLength: 16,
               decoration: const InputDecoration(
@@ -28,9 +34,10 @@ class _AddMechanicScreenState extends State<AddMechanicScreen> {
             const SizedBox(
               height: 20,
             ),
-            const TextField(
+            TextField(
+              controller: _namaTeknisi,
               keyboardType: TextInputType.name,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Nama',
               ),
             ),
@@ -40,7 +47,32 @@ class _AddMechanicScreenState extends State<AddMechanicScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                ElevatedButton(onPressed: () {}, child: Text('Simpan'))
+                ElevatedButton(onPressed: () {
+                  if (_nik.text.isEmpty || _namaTeknisi.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Data tidak boleh kosong'),
+                      ),
+                    );
+                  } else {
+                    APIService.addMechanic(_nik.text, _namaTeknisi.text).then((value) => {
+                      if (value == 1) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Data berhasil ditambahkan'),
+                          ),
+                        ),
+                        context.pop(),
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Data gagal ditambahkan'),
+                          ),
+                        ),
+                      }
+                    });
+                  }
+                }, child: Text('Simpan'))
               ],
             )
           ],

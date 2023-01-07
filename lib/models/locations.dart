@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+Locations locationsFromJson(String str) => Locations.fromJson(json.decode(str));
+
 class Locations {
   List<Data>? data;
 
