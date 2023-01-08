@@ -31,7 +31,7 @@ class CategoriesScreen extends StatelessWidget {
                           children: [
                             SlidableAction(
                               onPressed: (value) {
-                                print(snapshot.data.data![index].namaKategori);
+                                context.push('/editCategories', extra: snapshot.data.data![index]);
                               },
                               backgroundColor: const Color(0xFF21B7CA),
                               foregroundColor: Colors.white,

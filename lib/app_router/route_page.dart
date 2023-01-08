@@ -7,7 +7,8 @@ import 'package:gudang/screens/maintenance_screen.dart';
 import 'package:gudang/screens/manufactur_screen.dart';
 import 'package:gudang/screens/mechanic_screen.dart';
 import 'package:gudang/screens/model_screen.dart';
-import '../models/locations.dart';
+import '../models/locations.dart' as locations;
+import '../models/categories.dart' as categories;
 import '../screens/add_asset_screen.dart';
 import '../screens/add_location_screen.dart';
 import '../screens/add_maintenance_screen.dart';
@@ -15,6 +16,7 @@ import '../screens/add_manufactur_screen.dart';
 import '../screens/add_mehanic_screens.dart';
 import '../screens/add_supplier_screen.dart';
 import '../screens/categories_screen.dart';
+import '../screens/edit_categories_screen.dart';
 import '../screens/edit_location_screen.dart';
 import '../screens/location_screen.dart';
 import '../screens/supplier_screen.dart';
@@ -88,6 +90,10 @@ class RoutePage {
             path: '/addCategory',
             name: 'addCategory',
             builder: (context, state) => AddCategoryScreen()),
+        GoRoute(path: '/editCategories', name: 'editCategories', builder: (context, state) {
+          final category = state.extra as categories.Data;
+          return EditCategoriesScreen(category: category);
+        }),
         GoRoute(
             path: '/location',
             name: 'location',
@@ -100,8 +106,7 @@ class RoutePage {
             path: '/editLocation',
             name: 'editLocation',
             builder: (context, state) {
-              Data location = state.extra as Data;
-              return EditLocationScreen(location: location);
+              return EditLocationScreen(location: state.extra as locations.Data);
             }),
       ],
       redirect: (context, state) {

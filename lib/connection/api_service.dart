@@ -110,6 +110,19 @@ class APIService{
       return 0;
     }
   }
+
+  static Future<int> updateCategories(String name, String id) async{
+    var dio = Dio();
+    var request = await dio.put("${_BASE_URL}categories/$id", data: {
+      "nama_kategori": name,
+    });
+    if (request.statusCode == 200){
+      return 1;
+    }else{
+      return 0;
+    }
+  }
+
   //manufacture
   static Future<Manufacturer> getAllManufacturer() async{
     var dio = Dio();
