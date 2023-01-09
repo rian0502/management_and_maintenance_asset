@@ -145,5 +145,16 @@ class APIService{
       return 0;
     }
   }
+  static Future<int> updateManufacturer(String nama_manufactur, String uuid) async{
+    var dio = Dio();
+    var request = await dio.put("${_BASE_URL}manufacturer/$uuid", data: {
+      "nama_manufactur" : nama_manufactur,
+    });
+    if (request.statusCode == 200){
+      return 1;
+    }else{
+      return 0;
+    }
+  }
 
 }

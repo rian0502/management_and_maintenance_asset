@@ -31,7 +31,7 @@ class ManufacturerScreen extends StatelessWidget {
                           children: [
                             SlidableAction(
                               onPressed: (value) {
-                                print(snapshot.data.data![index].namaManufactur);
+                                context.push('/editManufacturer', extra: snapshot.data.data![index]);
                               },
                               backgroundColor: const Color(0xFF21B7CA),
                               foregroundColor: Colors.white,
