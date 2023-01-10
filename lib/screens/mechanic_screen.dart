@@ -32,7 +32,7 @@ class MechanicScreen extends StatelessWidget {
                           children: [
                             SlidableAction(
                               onPressed: (value) {
-                                print(snapshot.data.data![index].namaGedung);
+                                context.push('/editMechanic', extra: snapshot.data.data![index]);
                               },
                               backgroundColor: const Color(0xFF21B7CA),
                               foregroundColor: Colors.white,
