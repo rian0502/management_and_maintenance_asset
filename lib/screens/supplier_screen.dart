@@ -10,7 +10,7 @@ class SupplierScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Supplier'),
+        title: const Text('Daftar Pemasok'),
       ),
       body: FutureBuilder(
         future: APIService.getAllSuppliers(),

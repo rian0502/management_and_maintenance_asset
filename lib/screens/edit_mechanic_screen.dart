@@ -41,6 +41,7 @@ class _EditMechanicScreenState extends State<EditMechanicScreen> {
               maxLength: 16,
               decoration: const InputDecoration(
                 hintText: 'NIK',
+                labelText: 'NIK'
               ),
             ),
             const SizedBox(
@@ -51,6 +52,7 @@ class _EditMechanicScreenState extends State<EditMechanicScreen> {
               keyboardType: TextInputType.name,
               decoration: const InputDecoration(
                 hintText: 'Nama',
+                labelText: 'Nama'
               ),
             ),
             const SizedBox(

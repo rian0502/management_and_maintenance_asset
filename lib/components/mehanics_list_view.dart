@@ -1,37 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../models/locations.dart';
+
+import '../models/mechanic.dart';
 
 
-class LocationListView extends StatefulWidget {
-  final List<Data>? locations;
-  const LocationListView({Key? key, this.locations}) : super(key: key);
+
+class MechanicsListView extends StatefulWidget {
+  final List<Data>? mechanic;
+  const MechanicsListView({Key? key, this.mechanic}) : super(key: key);
 
   @override
-  State<LocationListView> createState() => _LocationListViewState();
+  State<MechanicsListView> createState() => _MechanicsListViewState();
 }
 
-class _LocationListViewState extends State<LocationListView> {
+class _MechanicsListViewState extends State<MechanicsListView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.locations!.length,
+      itemCount: widget.mechanic!.length,
       itemBuilder: (context, index) {
         return Card(
             child: ListTile(
-                title: Text(widget.locations![index].namaGedung!),
-                subtitle: Text("Lantai : ${widget.locations![index].lantai}"),
+                title: Text(widget.mechanic![index].namaTeknisi!),
+                subtitle: Text("NIK : ${widget.mechanic![index].nik}"),
                 trailing: PopupMenuButton(
-                  child: const Icon(Icons.question_mark_outlined),
                   itemBuilder: (BuildContext context) => [
                     const PopupMenuItem(value: 1,child: Text('Edit'),),
                     const PopupMenuItem(value: 2,child: Text('View'),),
                   ],
                   onSelected: (value){
                     if(value == 1){
-                      context.push('/editLocation', extra: widget.locations![index]);
+                      context.push('/editMechanic', extra: widget.mechanic![index]);
                     }else{
-                      print(widget.locations![index].namaGedung);
+                      print(widget.mechanic![index].namaTeknisi);
                     }
                   },
                 )
