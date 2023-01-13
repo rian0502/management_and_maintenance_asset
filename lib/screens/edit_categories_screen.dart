@@ -36,7 +36,8 @@ class _EditCategoriesScreenState extends State<EditCategoriesScreen> {
               TextField(
                 controller: _namaKategoriController,
                 decoration: const InputDecoration(
-                  hintText: 'Kategori',
+                  hintText: 'Nama Kategori',
+                  labelText: 'Nama Kategori',
                 ),
               ),
 

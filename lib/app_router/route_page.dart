@@ -16,6 +16,7 @@ import '../screens/add_location_screen.dart';
 import '../screens/add_maintenance_screen.dart';
 import '../screens/add_manufactur_screen.dart';
 import '../screens/add_mehanic_screens.dart';
+import '../screens/add_model_screens.dart';
 import '../screens/add_supplier_screen.dart';
 import '../screens/categories_screen.dart';
 import '../screens/edit_categories_screen.dart';
@@ -58,6 +59,10 @@ class RoutePage {
             path: '/model',
             name: 'model',
             builder: (context, state) => const ModelScreen()),
+        GoRoute(
+            path: '/addModel',
+            name: 'addModel',
+            builder: (context, state) => AddModelScreens()),
         GoRoute(
             path: '/maintenance',
             name: 'maintenance',
