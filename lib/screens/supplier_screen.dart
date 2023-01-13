@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:go_router/go_router.dart';
-
+import '../components/supplier_list_view.dart';
 import '../connection/api_service.dart';
 
 class SupplierScreen extends StatelessWidget {
@@ -17,36 +16,11 @@ class SupplierScreen extends StatelessWidget {
         future: APIService.getAllSuppliers(),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data.data!.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                  child: Card(
-                      child: Slidable(
-                        key: Key(snapshot.data.data![index].uuid),
-                        startActionPane: ActionPane(
-                          motion: const ScrollMotion(),
-                          dismissible: DismissiblePane(onDismissed: () {}),
-                          children: [
-                            SlidableAction(
-                              onPressed: (value) {
-                                print(snapshot.data.data![index].namaGedung);
-                              },
-                              backgroundColor: const Color(0xFF21B7CA),
-                              foregroundColor: Colors.white,
-                              icon: Icons.edit,
-                              label: 'Edit',
-                            ),
-                          ],
-                        ),
-                        child:  ListTile(
-                          title: Text(snapshot.data.data![index].namaSupplier),
-                          subtitle: Text(snapshot.data.data![index].noTelp),
-                        ),
-                      )),
-                );
-              },
+            return Padding(
+              padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+              child: SupplierListView(
+                supplier: snapshot.data.data!,
+              ),
             );
           } else {
             return const Center(
@@ -59,7 +33,10 @@ class SupplierScreen extends StatelessWidget {
         onPressed: () {
           context.push('/addSupplier');
         },
-        child: const Icon(Icons.add, color: Colors.white,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }

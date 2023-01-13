@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:gudang/home.dart';
 import 'package:gudang/models/manufacturer.dart' as manufactur;
+
 import 'package:gudang/screens/add_category_screen.dart';
 import 'package:gudang/screens/assets_screen.dart';
+import 'package:gudang/screens/edit_supplier_screen.dart';
 import 'package:gudang/screens/login_page.dart';
 import 'package:gudang/screens/maintenance_screen.dart';
 import 'package:gudang/screens/manufactur_screen.dart';
@@ -11,6 +13,7 @@ import 'package:gudang/screens/model_screen.dart';
 import '../models/locations.dart' as locations;
 import '../models/categories.dart' as categories;
 import '../models/mechanic.dart' as mehcnic;
+import '../models/suppliers.dart' as supplier;
 import '../screens/add_asset_screen.dart';
 import '../screens/add_location_screen.dart';
 import '../screens/add_maintenance_screen.dart';
@@ -107,6 +110,13 @@ class RoutePage {
             path: '/addSupplier',
             name: 'addSupplier',
             builder: (context, state) => const AddSupplierScreen()),
+        GoRoute(
+            path: '/editSupplier',
+            name: 'editSupplier',
+            builder: (context, state) {
+              final sp = state.extra as supplier.Data;
+              return EditSupplierScreen(supplier: sp,);
+            }),
         GoRoute(
             path: '/categories',
             name: 'categories',
