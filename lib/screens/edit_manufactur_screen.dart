@@ -27,7 +27,7 @@ class _EditManufacturScreenState extends State<EditManufacturScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Manufacture'),
+        title: const Text('Edit Data Pabrikan'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -36,7 +36,8 @@ class _EditManufacturScreenState extends State<EditManufacturScreen> {
             TextField(
               controller: _namaManufacturerController,
               decoration: const InputDecoration(
-                hintText: 'Nama Pabrik',
+                hintText: 'Nama Pabrikan',
+                labelText: 'Nama Pabrikan'
               ),
             ),
             const SizedBox(

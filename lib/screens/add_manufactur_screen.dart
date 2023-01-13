@@ -16,7 +16,7 @@ class _AddManufactureScreenState extends State<AddManufactureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Manufacture'),
+        title: const Text('Tambah Pabrikan'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -25,7 +25,7 @@ class _AddManufactureScreenState extends State<AddManufactureScreen> {
             TextField(
               controller: _namaManufacturerController,
               decoration: const InputDecoration(
-                hintText: 'Nama Kategori',
+                hintText: 'Nama Pabrikan',
               ),
             ),
             const SizedBox(
@@ -44,7 +44,7 @@ class _AddManufactureScreenState extends State<AddManufactureScreen> {
                                     {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(
-                                          content: Text(
+                                        content: Text(
                                             'Berhasil menambahkan Pabrikan'),
                                       )),
                                       context.pop(),

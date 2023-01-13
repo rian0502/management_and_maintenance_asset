@@ -76,14 +76,14 @@ class _EditSupplierScreenState extends State<EditSupplierScreen> {
                           );
                         } else {
                           //update location
-                          APIService.updateLocation(uuid, _namaSupplier.text, _noTlp.text)
+                          APIService.updateSuppliers(uuid, _namaSupplier.text, _noTlp.text)
                               .then((value) => {
                             if (value == 1)
                               {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text(
-                                        'Berhasil mengubah lokasi'),
+                                        'Berhasil mengubah Pemasok'),
                                   ),
                                 ),
                                 context.pop(),
@@ -91,7 +91,7 @@ class _EditSupplierScreenState extends State<EditSupplierScreen> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text(
-                                      'Gagal mengubah lokasi'),
+                                      'Gagal mengubah Pemasok'),
                                 ),
                               ),
                             }

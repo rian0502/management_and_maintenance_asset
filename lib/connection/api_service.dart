@@ -100,6 +100,18 @@ class APIService{
       return 0;
     }
   }
+  static Future<int> updateSuppliers(String uuid, String namaSuplier, String noTLP) async{
+    var dio = Dio();
+    var request = await dio.put("${_BASE_URL}suppliers/$uuid",data: {
+      "nama_supplier": namaSuplier,
+      "no_telp": noTLP
+    });
+    if(request.statusCode == 200){
+      return 1;
+    }else{
+      return 0;
+    }
+  }
   //kategori
   static Future<Categories> getAllCategories() async{
     var dio = Dio();
