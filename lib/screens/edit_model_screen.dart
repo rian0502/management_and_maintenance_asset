@@ -1,28 +1,42 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gudang/connection/api_service.dart';
-import 'package:gudang/models/manufacturer.dart' as manufacture;
-import 'package:gudang/models/categories.dart' as categories;
 import '../connection/api_dropdown.dart';
+import '../connection/api_service.dart';
+import '../models/models_barang.dart' as models;
+import '../models/manufacturer.dart' as manufacture;
+import '../models/categories.dart' as categories;
 
-class AddModelScreens extends StatefulWidget {
-  const AddModelScreens({Key? key}) : super(key: key);
+class EditModelScreen extends StatefulWidget {
+  final models.Data? model;
+  const EditModelScreen({Key? key, this.model}) : super(key: key);
 
   @override
-  State<AddModelScreens> createState() => _AddModelScreensState();
+  State<EditModelScreen> createState() => _EditModelScreenState();
 }
 
-class _AddModelScreensState extends State<AddModelScreens> {
-  String _uuidManufactur = '';
-  String _uuidCategori = '';
+class _EditModelScreenState extends State<EditModelScreen> {
   final TextEditingController _namaModel = TextEditingController();
   final TextEditingController _kodeModel = TextEditingController();
+  late String _uuidManufacturer;
+  late String _uuidCategory;
+  late String _uuidModel;
+  @override
+  void initState() {
+    _namaModel.text = widget.model!.namaModel!;
+    _kodeModel.text = widget.model!.noModel!;
+    _uuidManufacturer = widget.model!.idManufacturer!;
+    _uuidCategory = widget.model!.idKategori!;
+    _uuidModel = widget.model!.uuid!;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Model'),
+        title: const Text('Edit Model'),
       ),
       body: Padding(
           padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
@@ -57,9 +71,9 @@ class _AddModelScreensState extends State<AddModelScreens> {
                 },
                 onChanged: (value) {
                   setState(() {
-                    _uuidManufactur = value!.uuid!;
+                    _uuidManufacturer = value!.uuid!;
                   });
-                  print(_uuidManufactur);
+                  print(_uuidManufacturer);
                 },
                 popupProps: PopupProps.dialog(
                   showSearchBox: true,
@@ -87,9 +101,9 @@ class _AddModelScreensState extends State<AddModelScreens> {
                 },
                 onChanged: (value) {
                   setState(() {
-                    _uuidCategori = value!.uuid!;
+                    _uuidCategory = value!.uuid!;
                   });
-                  print(_uuidCategori);
+                  print(_uuidCategory);
                 },
                 popupProps: PopupProps.dialog(
                   showSearchBox: true,
@@ -112,28 +126,35 @@ class _AddModelScreensState extends State<AddModelScreens> {
                       onPressed: () {
                         if (_namaModel.text.isEmpty ||
                             _kodeModel.text.isEmpty ||
-                            _uuidManufactur.isEmpty ||
-                            _uuidCategori.isEmpty) {
+                            _uuidManufacturer.isEmpty ||
+                            _uuidCategory.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('Data harus di isi'),
                             ),
                           );
                         } else {
-                          APIService.addModels(_namaModel.text, _uuidManufactur,
-                                  _uuidCategori, _kodeModel.text)
+                          APIService.updateModels(
+                                  _namaModel.text,
+                                  _uuidManufacturer,
+                                  _uuidCategory,
+                                  _kodeModel.text,
+                                  _uuidModel)
                               .then((value) {
+                                setState(() {
+
+                                });
                             if (value == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Berhasil menambahkan data'),
+                                  content: Text('Berhasil merubah data'),
                                 ),
                               );
                               context.pop();
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text('Gagal menambahkan data'),
+                                  content: Text('Gagal merubah data'),
                                 ),
                               );
                             }

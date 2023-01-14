@@ -3,6 +3,7 @@ import '../models/categories.dart';
 import '../models/locations.dart';
 import '../models/manufacturer.dart';
 import '../models/mechanic.dart';
+import '../models/models_barang.dart';
 import '../models/suppliers.dart';
 
 class APIService{
@@ -176,6 +177,44 @@ class APIService{
     if (request.statusCode == 200){
       return 1;
     }else{
+      return 0;
+    }
+  }
+  // request untuk table models
+  static Future<Models> getAllModels() async{
+    var dio = Dio();
+    var request = await dio.get("${_BASE_URL}modelsbarang");
+    if (request.statusCode == 200){
+      return Models.fromJson(request.data);
+    } else {
+      throw Exception("Failed to load data");
+    }
+  }
+  static Future<int> addModels(String namaModel, String idManufacture, String idCategory, String noModel) async{
+    var dio = Dio();
+    var request = await dio.post("${_BASE_URL}modelsbarang", data: {
+      "nama_model": namaModel,
+      "id_manufacturer": idManufacture,
+      "id_kategori": idCategory,
+      "no_model": noModel,
+    });
+    if (request.statusCode == 200){
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+  static Future<int> updateModels(String namaModel, String idManufacturer, String idCategory, String noModel, String uuid) async{
+    var dio = Dio();
+    var request = await dio.put("${_BASE_URL}modelsbarang/$uuid", data: {
+      "nama_model": namaModel,
+      "id_manufacturer": idManufacturer,
+      "id_kategori": idCategory,
+      "no_model": noModel
+    });
+    if (request.statusCode == 200){
+      return 1;
+    } else {
       return 0;
     }
   }

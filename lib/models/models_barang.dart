@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-Categories categoriesFromJson(String str) => Categories.fromJson(json.decode(str));
+Models modelsFromJson(String str) => Models.fromJson(json.decode(str));
 
-class Categories {
+class Models {
   List<Data>? data;
 
-  Categories({this.data});
+  Models({this.data});
 
-  Categories.fromJson(Map<String, dynamic> json) {
+  Models.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
@@ -27,15 +27,31 @@ class Categories {
 
 class Data {
   String? uuid;
-  String? namaKategori;
+  String? namaModel;
+  String? idManufacturer;
+  String? idKategori;
+  String? noModel;
+  Null? foto;
   String? createdAt;
   String? updatedAt;
 
-  Data({this.uuid, this.namaKategori, this.createdAt, this.updatedAt});
+  Data(
+      {this.uuid,
+        this.namaModel,
+        this.idManufacturer,
+        this.idKategori,
+        this.noModel,
+        this.foto,
+        this.createdAt,
+        this.updatedAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     uuid = json['uuid'];
-    namaKategori = json['nama_kategori'];
+    namaModel = json['nama_model'];
+    idManufacturer = json['id_manufacturer'];
+    idKategori = json['id_kategori'];
+    noModel = json['no_model'];
+    foto = json['foto'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -43,16 +59,13 @@ class Data {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['uuid'] = uuid;
-    data['nama_kategori'] = namaKategori;
+    data['nama_model'] = namaModel;
+    data['id_manufacturer'] = idManufacturer;
+    data['id_kategori'] = idKategori;
+    data['no_model'] = noModel;
+    data['foto'] = foto;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;
-  }
-  static List<Data> fromJsonList(List list){
-    if(list.isEmpty){
-      return [];
-    }else{
-      return list.map((item) => Data.fromJson(item)).toList();
-    }
   }
 }
