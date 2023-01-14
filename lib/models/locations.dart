@@ -56,4 +56,8 @@ class Data {
     data['updated_at'] = this.updatedAt;
     return data;
   }
+  static List<Data> fromJsonList(List list){
+    if(list == null) return [];
+    return list.map((item) => Data.fromJson(item)).toList();
+  }
 }

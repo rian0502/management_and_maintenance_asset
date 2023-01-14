@@ -18,7 +18,7 @@ class _AssetsScreenState extends State<AssetsScreen> {
         onPressed: () {
           context.push('/addAsset');
         },
-        child: const Icon(Icons.add, color: Colors.white,),
+        child: const Icon(Icons.add,),
       ),
     );
   }

@@ -56,6 +56,11 @@ class Data {
     updatedAt = json['updated_at'];
   }
 
+  static List<Data> fromJsonList(List list){
+    if(list == null) return [];
+    return list.map((item) => Data.fromJson(item)).toList();
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['uuid'] = uuid;
