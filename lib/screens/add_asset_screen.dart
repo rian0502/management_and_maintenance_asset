@@ -1,9 +1,12 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gudang/connection/api_service.dart';
 import '../connection/api_dropdown.dart';
 import 'package:gudang/models/models_barang.dart' as models;
 import 'package:gudang/models/locations.dart' as locations;
 import 'package:gudang/models/suppliers.dart' as suppliers;
+
 class AddAssetScreen extends StatefulWidget {
   const AddAssetScreen({Key? key}) : super(key: key);
 
@@ -15,7 +18,10 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
   late String _uuidModel;
   late String _uuidLocation;
   late String _uuidSupplier;
-
+  final TextEditingController _controllerNameAset = TextEditingController();
+  final TextEditingController _controllerKodeOrder = TextEditingController();
+  final TextEditingController _controllerKeterangan = TextEditingController();
+  final TextEditingController _controllerDatePicker = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +31,7 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
         child: ListView(
           children: [
             TextFormField(
+              controller: _controllerNameAset,
               decoration: const InputDecoration(
                 labelText: "Nama Aset",
                 border: OutlineInputBorder(),
@@ -50,8 +57,8 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
               popupProps: PopupProps.dialog(
                 showSearchBox: true,
                 showSelectedItems: true,
-                itemBuilder: (BuildContext context, models.Data item,
-                    bool isSelected) {
+                itemBuilder:
+                    (BuildContext context, models.Data item, bool isSelected) {
                   return Container(
                     padding: const EdgeInsets.all(10),
                     child: Text("${item.namaModel!} -  ${item.noModel!}"),
@@ -122,6 +129,27 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
             ),
             const SizedBox(height: 15),
             TextFormField(
+              controller: _controllerDatePicker,
+              readOnly: true,
+              decoration: const InputDecoration(
+                labelText: "Tanggal Order",
+                border: OutlineInputBorder(),
+              ),
+              onTap: () async {
+                DateTime? date = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2000),
+                    lastDate: DateTime(2100));
+                _controllerDatePicker.text =
+                    "${date!.year}-${date.month}-${date.day}";
+              },
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            TextFormField(
+              controller: _controllerKodeOrder,
               decoration: const InputDecoration(
                 labelText: "Kode Order",
                 border: OutlineInputBorder(),
@@ -129,16 +157,57 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
             ),
             const SizedBox(height: 15),
             TextFormField(
+              controller: _controllerKeterangan,
               decoration: const InputDecoration(
                 labelText: "Keterangan",
                 border: OutlineInputBorder(),
               ),
             ),
-
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                print("tambah asset");
+                if (_controllerNameAset.text.isEmpty ||
+                    _controllerKodeOrder.text.isEmpty ||
+                    _controllerKeterangan.text.isEmpty ||
+                    _controllerDatePicker.text.isEmpty ||
+                    _uuidModel.isEmpty ||
+                    _uuidLocation.isEmpty ||
+                    _uuidSupplier.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Data tidak boleh kosong'),
+                    ),
+                  );
+                } else {
+                  APIService.addAsset(
+                          _uuidModel,
+                          _uuidSupplier,
+                          _uuidLocation,
+                          _controllerNameAset.text,
+                          _controllerDatePicker.text,
+                          _controllerKodeOrder.text,
+                          _controllerKeterangan.text)
+                      .then((value) => {
+                            if (value == 1)
+                              {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Data berhasil ditambahkan'),
+                                  ),
+                                ),
+                                context.pop(),
+                              }
+                            else
+                              {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text('Data gagal ditambahkan'),
+                                  ),
+                                ),
+                              }
+                          });
+                  context.pop();
+                }
               },
               child: const Text("Tambah Asset"),
             ),
