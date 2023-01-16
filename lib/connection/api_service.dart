@@ -262,4 +262,29 @@ class APIService {
       return 0;
     }
   }
+  static Future<int> updateAsset(
+      String idModel,
+      String idSupplier,
+      String idLocation,
+      String namaAset,
+      String purchaseDate,
+      String orderNumber,
+      String ket,
+      String uuid) async {
+    var dio = Dio();
+    var request = await dio.put("${_BASE_URL}assets/$uuid", data: {
+      "id_model": idModel,
+      "id_supplier": idSupplier,
+      "id_location": idLocation,
+      "nama_asset": namaAset,
+      "purchase_date": purchaseDate,
+      "order_number": orderNumber,
+      "notes": ket
+    });
+    if (request.statusCode == 200) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 }

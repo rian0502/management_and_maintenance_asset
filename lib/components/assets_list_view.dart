@@ -33,8 +33,7 @@ class _AssetsListViewState extends State<AssetsListView> {
                   ],
                   onSelected: (value) {
                     if (value == 1) {
-                      context.push('/editCategories',
-                          extra: widget.assets![index]);
+                      context.push('/editAsset', extra: widget.assets![index]);
                     } else {
                       print(widget.assets![index].namaAsset);
                     }
