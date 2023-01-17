@@ -4,6 +4,8 @@ import 'package:gudang/models/manufacturer.dart' as manufactur;
 import 'package:gudang/models/suppliers.dart' as suppliers;
 import 'package:gudang/models/models_barang.dart' as models;
 import 'package:gudang/models/locations.dart' as locations;
+import 'package:gudang/models/mechanic.dart' as mechanic;
+import 'package:gudang/models/assets.dart' as assets;
 
 
 class APIDropDown{
@@ -54,6 +56,23 @@ class APIDropDown{
       return [];
     }
   }
-
+  static Future<List<mechanic.Data>> getAllMechanic() async{
+    var dio = Dio();
+    var request = await dio.get("${_BASE_URL}teknisi");
+    if (request.statusCode == 200){
+      return mechanic.Data.fromJsonList(request.data['data']);
+    } else {
+      return [];
+    }
+  }
+  static Future<List<assets.Data>> getAllAssets() async{
+    var dio = Dio();
+    var request = await dio.get("${_BASE_URL}assets");
+    if (request.statusCode == 200){
+      return assets.Data.fromJsonList(request.data['data']);
+    } else {
+      return [];
+    }
+  }
 
 }

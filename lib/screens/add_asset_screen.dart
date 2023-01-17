@@ -44,7 +44,7 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
               child: Text('Model'),
             ),
             DropdownSearch(
-              itemAsString: (item) => item.namaModel!.toString(),
+              itemAsString: (item) => "${item.namaModel!} - ${item.noModel!}",
               asyncItems: (String? filter) {
                 return APIDropDown.getAllModels();
               },

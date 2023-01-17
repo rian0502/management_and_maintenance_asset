@@ -31,7 +31,7 @@ class Data {
   String? idManufacturer;
   String? idKategori;
   String? noModel;
-  Null? foto;
+  String? foto;
   String? createdAt;
   String? updatedAt;
 
@@ -57,7 +57,7 @@ class Data {
   }
 
   static List<Data> fromJsonList(List list){
-    if(list == null) return [];
+    if(list.isEmpty) return [];
     return list.map((item) => Data.fromJson(item)).toList();
   }
 

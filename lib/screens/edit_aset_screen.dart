@@ -38,7 +38,15 @@ class _EditAssetScreenState extends State<EditAssetScreen> {
     _controllerNameAset.text = widget.asset!.namaAsset!;
     super.initState();
   }
-
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controllerNameAset.dispose();
+    _controllerKodeOrder.dispose();
+    _controllerKeterangan.dispose();
+    _controllerDatePicker.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -215,7 +223,7 @@ class _EditAssetScreenState extends State<EditAssetScreen> {
                                     content: Text('Data berhasil ditambahkan'),
                                   ),
                                 ),
-                                context.pop(),
+                                Navigator.pop(context),
                               }
                             else
                               {
@@ -229,7 +237,7 @@ class _EditAssetScreenState extends State<EditAssetScreen> {
                   context.pop();
                 }
               },
-              child: const Text("Tambah Asset"),
+              child: const Text("Simpan Asset"),
             ),
           ],
         ),

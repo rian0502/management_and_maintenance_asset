@@ -40,16 +40,16 @@ class Data {
 
   Data(
       {this.uuid,
-        this.serial,
-        this.idModel,
-        this.idLocation,
-        this.idSupplier,
-        this.namaAsset,
-        this.purchaseDate,
-        this.orderNumber,
-        this.notes,
-        this.createdAt,
-        this.updatedAt});
+      this.serial,
+      this.idModel,
+      this.idLocation,
+      this.idSupplier,
+      this.namaAsset,
+      this.purchaseDate,
+      this.orderNumber,
+      this.notes,
+      this.createdAt,
+      this.updatedAt});
 
   Data.fromJson(Map<String, dynamic> json) {
     uuid = json['uuid'];
@@ -64,9 +64,16 @@ class Data {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
+  static List<Data> fromJsonList(List list) {
+    if (list.isNotEmpty) {
+      return list.map((item) => Data.fromJson(item)).toList();
+    } else {
+      return <Data>[];
+    }
+  }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['uuid'] = uuid;
     data['serial'] = serial;
     data['id_model'] = idModel;

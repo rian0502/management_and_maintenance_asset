@@ -17,7 +17,9 @@ void main() async {
 class MyApp extends StatefulWidget {
   final AppStateManager appStateManager;
   final FormState formState;
-  const MyApp({Key? key, required this.appStateManager, required this.formState}) : super(key: key);
+  const MyApp(
+      {Key? key, required this.appStateManager, required this.formState})
+      : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -31,12 +33,9 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (context) => ThemaState(),
+          create: (context) => ThemaState(),
         ),
-        ChangeNotifierProvider(
-            create: (context) => widget.appStateManager
-        ),
-
+        ChangeNotifierProvider(create: (context) => widget.appStateManager),
       ],
       child: Consumer<ThemaState>(
         builder: (context, themaState, child) {

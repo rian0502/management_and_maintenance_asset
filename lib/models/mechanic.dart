@@ -51,4 +51,11 @@ class Data {
     data['updated_at'] = updatedAt;
     return data;
   }
+  static List<Data> fromJsonList(List list) {
+    if (list.isNotEmpty) {
+      return list.map((item) => Data.fromJson(item)).toList();
+    } else {
+      return [];
+    }
+  }
 }
