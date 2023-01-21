@@ -43,6 +43,9 @@ class _HomeState extends State<Home> {
             menu('Pemasok', 'assets/images/supplier.png', '/supplier'),
             menu('Kategori', 'assets/images/categories.png', '/categories'),
             menu('Lokasi', 'assets/images/location.png', '/location'),
+            ElevatedButton(onPressed: (){
+              Provider.of<AppStateManager>(context, listen: false).logout();
+            }, child: const Text('Logout')),
           ],
         ),
       ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../state_manager/app_state_manager.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -29,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _nrp,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'NRP',
+                  labelText: 'Email',
                 ),
               ),
             ),
@@ -50,8 +52,8 @@ class _LoginPageState extends State<LoginPage> {
               width: 300,
               child: ElevatedButton(
                 onPressed: () {
-                  print(_nrp.text);
-                  print(_password.text);
+                  Provider.of<AppStateManager>(context, listen: false)
+                      .login(_nrp.text, _password.text, context);
                 },
                 child: const Text('Login'),
               ),

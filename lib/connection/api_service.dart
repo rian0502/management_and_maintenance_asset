@@ -300,32 +300,41 @@ class APIService {
       throw Exception("Failed to load data");
     }
   }
+
   static Future<int> addMaintenance(
       String id_asset, String id_teknisi, String note) async {
     var dio = Dio();
-    var request = await dio.post("${_BASE_URL}maintenance", data: {
-      "id_asset": id_asset,
-      "id_teknisi": id_teknisi,
-      "note": note
-    });
+    var request = await dio.post("${_BASE_URL}maintenance",
+        data: {"id_asset": id_asset, "id_teknisi": id_teknisi, "note": note});
     if (request.statusCode == 200) {
       return 1;
     } else {
       return 0;
     }
   }
+
   static Future<int> updateMaintenance(
       String uuid, String id_asset, String id_teknisi, String note) async {
     var dio = Dio();
-    var request = await dio.put("${_BASE_URL}maintenance/$uuid", data: {
-      "id_asset": id_asset,
-      "id_teknisi": id_teknisi,
-      "note": note
-    });
+    var request = await dio.put("${_BASE_URL}maintenance/$uuid",
+        data: {"id_asset": id_asset, "id_teknisi": id_teknisi, "note": note});
     if (request.statusCode == 200) {
       return 1;
     } else {
       return 0;
     }
+  }
+
+  //AUTH
+  static Future<String> login(String email, String password) async {
+    var dio = Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    var request = await dio.post("${_BASE_URL}login", data: {
+      "email": email,
+      "password": password,
+    }).catchError((e) {
+      print(e.toString());
+    });
+    return request.data['token'];
   }
 }

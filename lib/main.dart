@@ -1,13 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:gudang/state_manager/app_state_manager.dart';
-import 'package:gudang/state_manager/thema_state.dart';
 import 'package:gudang/thema.dart';
-import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'app_router/route_page.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:gudang/state_manager/thema_state.dart';
+import 'package:gudang/state_manager/app_state_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final appStateManager = AppStateManager();
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+  final appStateManager = AppStateManager(sharedPreferences);
+  appStateManager.initializeApp();
   runApp(MyApp(
     appStateManager: appStateManager,
     formState: FormState(),

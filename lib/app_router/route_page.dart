@@ -43,7 +43,7 @@ class RoutePage {
   late final router = GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateManager,
-      initialLocation: '/',
+      initialLocation: '/login',
       routes: [
         GoRoute(
             path: '/', name: 'home', builder: (context, state) => const Home()),
@@ -86,7 +86,7 @@ class RoutePage {
         GoRoute(
             path: '/addModel',
             name: 'addModel',
-            builder: (context, state) => AddModelScreens()),
+            builder: (context, state) => const AddModelScreens()),
         GoRoute(
             path: '/editModel',
             name: 'editModel',
@@ -180,7 +180,13 @@ class RoutePage {
                   location: state.extra as locations.Data);
             }),
       ],
-      redirect: (context, state) {
+      redirect: (context, state){
+        if (!appStateManager!.loggedIn) {
+          return '/login';
+        }
+        if (appStateManager!.loggedIn) {
+          return '/';
+        }
         return null;
       });
 }
