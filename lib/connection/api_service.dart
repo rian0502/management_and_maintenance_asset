@@ -9,7 +9,7 @@ import '../models/suppliers.dart';
 
 class APIService {
   static const String _BASE_URL = "http://mfrh.me/smmapeltar/api/";
-  //api lokasi
+
   static Future<Locations> getAllLocation() async {
     var dio = Dio();
     var request = await dio.get("${_BASE_URL}locations");
