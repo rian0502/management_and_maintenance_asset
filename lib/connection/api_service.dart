@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import '../models/assets.dart';
 import '../models/categories.dart';
 import '../models/locations.dart';
+import '../models/maintenance.dart';
 import '../models/manufacturer.dart';
 import '../models/mechanic.dart';
 import '../models/models_barang.dart';
@@ -262,6 +263,7 @@ class APIService {
       return 0;
     }
   }
+
   static Future<int> updateAsset(
       String idModel,
       String idSupplier,
@@ -280,6 +282,45 @@ class APIService {
       "purchase_date": purchaseDate,
       "order_number": orderNumber,
       "notes": ket
+    });
+    if (request.statusCode == 200) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  //maintenance
+  static Future<Maintenance> getAllMaintenance() async {
+    var dio = Dio();
+    var request = await dio.get("${_BASE_URL}maintenance");
+    if (request.statusCode == 200) {
+      return Maintenance.fromJson(request.data);
+    } else {
+      throw Exception("Failed to load data");
+    }
+  }
+  static Future<int> addMaintenance(
+      String id_asset, String id_teknisi, String note) async {
+    var dio = Dio();
+    var request = await dio.post("${_BASE_URL}maintenance", data: {
+      "id_asset": id_asset,
+      "id_teknisi": id_teknisi,
+      "note": note
+    });
+    if (request.statusCode == 200) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+  static Future<int> updateMaintenance(
+      String uuid, String id_asset, String id_teknisi, String note) async {
+    var dio = Dio();
+    var request = await dio.put("${_BASE_URL}maintenance/$uuid", data: {
+      "id_asset": id_asset,
+      "id_teknisi": id_teknisi,
+      "note": note
     });
     if (request.statusCode == 200) {
       return 1;

@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+Maintenance maintenanceFromJson(String str) =>
+    Maintenance.fromJson(json.decode(str));
+
 class Maintenance {
   List<Data>? data;
 
@@ -22,7 +27,7 @@ class Maintenance {
 }
 
 class Data {
-  int? uuid;
+  String? uuid;
   String? idAsset;
   String? idTeknisi;
   String? note;

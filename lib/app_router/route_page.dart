@@ -3,6 +3,7 @@ import 'package:gudang/home.dart';
 import 'package:gudang/models/manufacturer.dart' as manufactur;
 import 'package:gudang/screens/add_category_screen.dart';
 import 'package:gudang/screens/assets_screen.dart';
+import 'package:gudang/screens/edit_maintenance_screen.dart';
 import 'package:gudang/screens/edit_model_screen.dart';
 import 'package:gudang/screens/edit_supplier_screen.dart';
 import 'package:gudang/screens/login_page.dart';
@@ -16,6 +17,7 @@ import '../models/mechanic.dart' as mehcnic;
 import '../models/suppliers.dart' as supplier;
 import '../models/models_barang.dart' as models;
 import '../models/assets.dart' as assets;
+import '../models/maintenance.dart' as maintenance;
 import '../screens/add_asset_screen.dart';
 import '../screens/add_location_screen.dart';
 import '../screens/add_maintenance_screen.dart';
@@ -61,6 +63,14 @@ class RoutePage {
             path: '/addMaintenance',
             name: 'addMaintenance',
             builder: (context, state) => const AddMaintenanceScreen()),
+        GoRoute(
+            path: '/editMaintenance',
+            name: 'editMaintenance',
+            builder: (context, state) {
+              return EditMaintenanceScreen(
+                maintc: state.extra as maintenance.Data,
+              );
+            }),
         GoRoute(
             path: '/login',
             name: 'login',

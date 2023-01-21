@@ -1,27 +1,40 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gudang/models/assets.dart' as assets;
-import 'package:gudang/models/mechanic.dart' as mechanic;
 import '../connection/api_dropdown.dart';
 import '../connection/api_service.dart';
+import '../models/maintenance.dart' as maintenance;
+import '../models/mechanic.dart' as mechanic;
+import '../models/assets.dart' as assets;
+import 'package:go_router/go_router.dart';
 
-class AddMaintenanceScreen extends StatefulWidget {
-  const AddMaintenanceScreen({Key? key}) : super(key: key);
+class EditMaintenanceScreen extends StatefulWidget {
+  final maintenance.Data? maintc;
+  const EditMaintenanceScreen({Key? key, this.maintc}) : super(key: key);
 
   @override
-  State<AddMaintenanceScreen> createState() => _AddMaintenanceScreenState();
+  State<EditMaintenanceScreen> createState() => _EditMaintenanceScreenState();
 }
 
-class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
-  final TextEditingController _notes = TextEditingController();
+class _EditMaintenanceScreenState extends State<EditMaintenanceScreen> {
   String _uuidAset = '';
+  String _id = '';
   String _uuidKMechanic = '';
+  final TextEditingController _notes = TextEditingController();
+
+  @override
+  void initState() {
+    _id = widget.maintc!.uuid!;
+    _notes.text = widget.maintc!.note!;
+    _uuidAset = widget.maintc!.idAsset!;
+    _uuidKMechanic = widget.maintc!.idTeknisi!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Perbaikan'),
+        title: const Text('Edit Maintenance'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -106,15 +119,15 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
                 ElevatedButton(
                     onPressed: () {
                       if (_notes.text.isNotEmpty) {
-                        APIService.addMaintenance(
-                                _uuidAset, _uuidKMechanic, _notes.text)
+                        APIService.updateMaintenance(
+                                _id, _uuidAset, _uuidKMechanic, _notes.text)
                             .then((value) => {
                                   if (value == 1)
                                     {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(
                                         content: Text(
-                                            'Berhasil menambahkan Perbaikan'),
+                                            'Berhasil mengubah data'),
                                       )),
                                       context.pop(),
                                     }
@@ -123,7 +136,7 @@ class _AddMaintenanceScreenState extends State<AddMaintenanceScreen> {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(
                                         content:
-                                            Text('Gagal menambahkan Perbaikan'),
+                                            Text('Gagal mengubah data'),
                                       )),
                                     }
                                 });
