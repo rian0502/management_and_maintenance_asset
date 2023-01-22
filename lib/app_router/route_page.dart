@@ -34,6 +34,7 @@ import '../screens/edit_manufactur_screen.dart';
 import '../screens/edit_mechanic_screen.dart';
 import '../screens/location_screen.dart';
 import '../screens/supplier_screen.dart';
+import '../screens/view_maintenance_screen.dart';
 import '../screens/view_model_screen.dart';
 import '../state_manager/app_state_manager.dart';
 
@@ -79,6 +80,14 @@ class RoutePage {
             builder: (context, state) {
               return EditMaintenanceScreen(
                 maintc: state.extra as maintenance.Data,
+              );
+            }),
+        GoRoute(
+            path: '/viewMaintenance',
+            name: 'viewMaintenance',
+            builder: (context, state) {
+              return ViewMaintenanceScreen(
+                uuid: state.extra as String,
               );
             }),
         GoRoute(

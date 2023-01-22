@@ -21,21 +21,26 @@ class _MaintenanceListViewState extends State<MaintenanceListView> {
             child: ListTile(
                 title: Text(widget.maintenance![index].note!),
                 trailing: PopupMenuButton(
-                  child: const Icon(Icons.question_mark_outlined),
                   itemBuilder: (BuildContext context) => [
-                    const PopupMenuItem(value: 1,child: Text('Edit'),),
-                    const PopupMenuItem(value: 2,child: Text('View'),),
+                    const PopupMenuItem(
+                      value: 1,
+                      child: Text('Edit'),
+                    ),
+                    const PopupMenuItem(
+                      value: 2,
+                      child: Text('View'),
+                    ),
                   ],
-                  onSelected: (value){
-                    if(value == 1){
-                      context.push('/editMaintenance', extra: widget.maintenance![index]);
-                    }else{
-                      print(widget.maintenance![index].note);
+                  onSelected: (value) {
+                    if (value == 1) {
+                      context.push('/editMaintenance',
+                          extra: widget.maintenance![index]);
+                    } else {
+                      context.push('/viewMaintenance',
+                          extra: widget.maintenance![index].uuid);
                     }
                   },
-                )
-            )
-        );
+                )));
       },
     );
   }

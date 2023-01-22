@@ -53,7 +53,7 @@ class _AddModelScreensState extends State<AddModelScreens> {
               DropdownSearch(
                 itemAsString: (item) => item.namaManufactur!.toString(),
                 asyncItems: (String? filter) {
-                  return APIDropDown.getAllManufacturer(filter ?? '');
+                  return APIDropDown.getAllManufacturer();
                 },
                 onChanged: (value) {
                   setState(() {

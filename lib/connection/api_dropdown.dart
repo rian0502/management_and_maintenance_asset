@@ -11,9 +11,9 @@ import 'package:gudang/models/assets.dart' as assets;
 class APIDropDown{
   static const String _BASE_URL = "http://mfrh.me/smmapeltar/api/";
 
-  static Future<List<manufactur.Data>> getAllManufacturer(String nama) async{
+  static Future<List<manufactur.Data>> getAllManufacturer() async{
     var dio = Dio();
-    var request = await dio.get("${_BASE_URL}manufacturer/$nama");
+    var request = await dio.get("${_BASE_URL}manufacturer");
     if (request.statusCode == 200){
       return manufactur.Data.fromJsonList(request.data['data']);
     } else {

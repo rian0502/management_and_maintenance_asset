@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../models/models_barang.dart';
 
-
 class ModelsListView extends StatefulWidget {
   final List<Data>? models;
   const ModelsListView({Key? key, this.models}) : super(key: key);
@@ -23,19 +22,24 @@ class _ModelsListViewState extends State<ModelsListView> {
                 subtitle: Text("Kode : ${widget.models![index].noModel}"),
                 trailing: PopupMenuButton(
                   itemBuilder: (BuildContext context) => [
-                    const PopupMenuItem(value: 1,child: Text('Edit'),),
-                    const PopupMenuItem(value: 2,child: Text('View'),),
+                    const PopupMenuItem(
+                      value: 1,
+                      child: Text('Edit'),
+                    ),
+                    const PopupMenuItem(
+                      value: 2,
+                      child: Text('View'),
+                    ),
                   ],
-                  onSelected: (value){
-                    if(value == 1){
+                  onSelected: (value) {
+                    if (value == 1) {
                       context.push('/editModel', extra: widget.models![index]);
-                    }else{
-                      context.push('/viewModel', extra: widget.models![index].uuid);
+                    } else {
+                      context.push('/viewModel',
+                          extra: widget.models![index].uuid);
                     }
                   },
-                )
-            )
-        );
+                )));
       },
     );
   }

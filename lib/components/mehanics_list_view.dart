@@ -3,8 +3,6 @@ import 'package:go_router/go_router.dart';
 
 import '../models/mechanic.dart';
 
-
-
 class MechanicsListView extends StatefulWidget {
   final List<Data>? mechanic;
   const MechanicsListView({Key? key, this.mechanic}) : super(key: key);
@@ -25,19 +23,18 @@ class _MechanicsListViewState extends State<MechanicsListView> {
                 subtitle: Text("NIK : ${widget.mechanic![index].nik}"),
                 trailing: PopupMenuButton(
                   itemBuilder: (BuildContext context) => [
-                    const PopupMenuItem(value: 1,child: Text('Edit'),),
-                    const PopupMenuItem(value: 2,child: Text('View'),),
+                    const PopupMenuItem(
+                      value: 1,
+                      child: Text('Edit'),
+                    ),
                   ],
-                  onSelected: (value){
-                    if(value == 1){
-                      context.push('/editMechanic', extra: widget.mechanic![index]);
-                    }else{
-                      print(widget.mechanic![index].namaTeknisi);
+                  onSelected: (value) {
+                    if (value == 1) {
+                      context.push('/editMechanic',
+                          extra: widget.mechanic![index]);
                     }
                   },
-                )
-            )
-        );
+                )));
       },
     );
   }

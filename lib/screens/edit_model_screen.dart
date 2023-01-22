@@ -67,13 +67,14 @@ class _EditModelScreenState extends State<EditModelScreen> {
               DropdownSearch(
                 itemAsString: (item) => item.namaManufactur!.toString(),
                 asyncItems: (String? filter) {
-                  return APIDropDown.getAllManufacturer(filter ?? '');
+                  return APIDropDown.getAllManufacturer();
                 },
+                selectedItem: manufacture.Data(
+                    uuid: _uuidManufacturer, namaManufactur: "a"),
                 onChanged: (value) {
                   setState(() {
                     _uuidManufacturer = value!.uuid!;
                   });
-                  print(_uuidManufacturer);
                 },
                 popupProps: PopupProps.dialog(
                   showSearchBox: true,
@@ -103,7 +104,6 @@ class _EditModelScreenState extends State<EditModelScreen> {
                   setState(() {
                     _uuidCategory = value!.uuid!;
                   });
-                  print(_uuidCategory);
                 },
                 popupProps: PopupProps.dialog(
                   showSearchBox: true,
@@ -141,9 +141,7 @@ class _EditModelScreenState extends State<EditModelScreen> {
                                   _kodeModel.text,
                                   _uuidModel)
                               .then((value) {
-                                setState(() {
-
-                                });
+                            setState(() {});
                             if (value == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(

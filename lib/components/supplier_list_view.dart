@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../models/suppliers.dart';
 
-
-class SupplierListView extends StatefulWidget{
+class SupplierListView extends StatefulWidget {
   final List<Data>? supplier;
   const SupplierListView({Key? key, this.supplier}) : super(key: key);
 
@@ -23,19 +22,18 @@ class _SupplierListViewState extends State<SupplierListView> {
                 subtitle: Text("Telp : ${widget.supplier![index].noTelp}"),
                 trailing: PopupMenuButton(
                   itemBuilder: (BuildContext context) => [
-                    const PopupMenuItem(value: 1,child: Text('Edit'),),
-                    const PopupMenuItem(value: 2,child: Text('View'),),
+                    const PopupMenuItem(
+                      value: 1,
+                      child: Text('Edit'),
+                    ),
                   ],
-                  onSelected: (value){
-                    if(value == 1){
-                      context.push('/editSupplier', extra: widget.supplier![index]);
-                    }else{
-                      print(widget.supplier![index].namaSupplier);
+                  onSelected: (value) {
+                    if (value == 1) {
+                      context.push('/editSupplier',
+                          extra: widget.supplier![index]);
                     }
                   },
-                )
-            )
-        );
+                )));
       },
     );
   }

@@ -3,6 +3,7 @@ import 'package:gudang/models/detail_asset.dart';
 import 'package:gudang/models/detail_models.dart';
 import '../models/assets.dart';
 import '../models/categories.dart';
+import '../models/detail_maintenance.dart';
 import '../models/locations.dart';
 import '../models/maintenance.dart';
 import '../models/manufacturer.dart';
@@ -345,7 +346,15 @@ class APIService {
       return 0;
     }
   }
-
+  static Future<MaintenanceDetail> detailMaintenance(String uuid) async {
+    var dio = Dio();
+    var request = await dio.get("${_BASE_URL}maintenance/$uuid");
+    if (request.statusCode == 200) {
+      return MaintenanceDetail.fromJson(request.data);
+    } else {
+      throw Exception("Failed to load data");
+    }
+  }
   //AUTH
   static Future<String> login(String email, String password) async {
     var dio = Dio();

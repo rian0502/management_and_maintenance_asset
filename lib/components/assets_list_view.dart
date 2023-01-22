@@ -35,7 +35,8 @@ class _AssetsListViewState extends State<AssetsListView> {
                     if (value == 1) {
                       context.push('/editAsset', extra: widget.assets![index]);
                     } else {
-                      context.push('/viewAsset', extra: widget.assets![index].uuid);
+                      context.push('/viewAsset',
+                          extra: widget.assets![index].uuid);
                     }
                   },
                 )));
