@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class ThemaState extends ChangeNotifier{
-  bool _darkmode = false;
+  bool _darkmode = true;
 
   bool get darkmode => _darkmode;
 

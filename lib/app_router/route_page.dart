@@ -183,9 +183,8 @@ class RoutePage {
       redirect: (context, state){
         if (!appStateManager!.loggedIn) {
           return '/login';
-        }
-        if (appStateManager!.loggedIn) {
-          return '/';
+        }else{
+          return state.subloc ?? '/';
         }
         return null;
       });

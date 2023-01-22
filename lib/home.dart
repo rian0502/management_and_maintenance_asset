@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool _isDark = false;
+  bool _isDark = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
           Switch(value: _isDark, onChanged: (value){
             Provider.of<ThemaState>(context, listen: false).darkMode(value);
             setState(() {
-              _isDark = value;
+              _isDark = !_isDark;
             });
           })
         ],
