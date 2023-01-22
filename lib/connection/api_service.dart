@@ -302,6 +302,7 @@ class APIService {
       return 0;
     }
   }
+
   static Future<DetailAsset> detailAsset(String uuid) async {
     var dio = Dio();
     var request = await dio.get("${_BASE_URL}assets/$uuid");
@@ -346,6 +347,7 @@ class APIService {
       return 0;
     }
   }
+
   static Future<MaintenanceDetail> detailMaintenance(String uuid) async {
     var dio = Dio();
     var request = await dio.get("${_BASE_URL}maintenance/$uuid");
@@ -355,6 +357,7 @@ class APIService {
       throw Exception("Failed to load data");
     }
   }
+
   //AUTH
   static Future<String> login(String email, String password) async {
     var dio = Dio();

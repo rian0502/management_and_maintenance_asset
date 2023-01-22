@@ -1,3 +1,4 @@
+import 'package:gudang/state_manager/register_state.dart';
 import 'package:gudang/thema.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app_router/route_page.dart';
@@ -39,6 +40,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (context) => ThemaState(),
         ),
+        ChangeNotifierProvider(create: (context) => RegisterState()),
         ChangeNotifierProvider(create: (context) => widget.appStateManager),
       ],
       child: Consumer<ThemaState>(

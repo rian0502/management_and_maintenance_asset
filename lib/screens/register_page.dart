@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../state_manager/app_state_manager.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import '../state_manager/register_state.dart';
 
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _nrp = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Consumer<AppStateManager>(
-      builder: (context, appStateManager, child) {
+    return Scaffold(body: Consumer<RegisterState>(
+      builder: (context, value, child) {
         return ListView(
           children: [
             Center(
@@ -32,7 +29,18 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     width: 300,
                     child: TextField(
-                      controller: _nrp,
+                      controller: value.name,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Nama',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 300,
+                    child: TextField(
+                      controller: value.email,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Email',
@@ -43,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     width: 300,
                     child: TextField(
-                      controller: _password,
+                      controller: value.password,
                       obscureText: true,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -54,20 +62,28 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
                   SizedBox(
                     width: 300,
+                    child: TextField(
+                      controller: value.confirmPassword,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Konfirmasi Password',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 300,
                     child: ElevatedButton(
-                      onPressed: appStateManager.loadingLogin
+                      onPressed: value.loading
                           ? null
                           : () {
-                              appStateManager.login(
-                                  _nrp.text, _password.text, context);
+                              value.register(context);
                             },
-                      child: const Text('Login'),
+                      child: const Text('Daftar'),
                     ),
                   ),
                   const SizedBox(height: 10),
-                  TextButton(onPressed: () {
-                    context.push('/register');
-                  }, child: const Text('Register')),
                 ],
               ),
             )

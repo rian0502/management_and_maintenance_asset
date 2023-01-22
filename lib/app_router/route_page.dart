@@ -11,6 +11,7 @@ import 'package:gudang/screens/maintenance_screen.dart';
 import 'package:gudang/screens/manufactur_screen.dart';
 import 'package:gudang/screens/mechanic_screen.dart';
 import 'package:gudang/screens/model_screen.dart';
+import 'package:gudang/screens/register_page.dart';
 import '../screens/view_asset_screen.dart';
 import '../models/locations.dart' as locations;
 import '../models/categories.dart' as categories;
@@ -46,7 +47,7 @@ class RoutePage {
   late final router = GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateManager,
-      initialLocation: '/login',
+      initialLocation: '/',
       routes: [
         GoRoute(
             path: '/', name: 'home', builder: (context, state) => const Home()),
@@ -94,6 +95,12 @@ class RoutePage {
             path: '/login',
             name: 'login',
             builder: (context, state) => const LoginPage()),
+        GoRoute(
+            path: '/register',
+            name: 'register',
+            builder: (context, state) {
+              return const RegisterPage();
+            }),
         GoRoute(
             path: '/aset',
             name: 'aset',
@@ -208,10 +215,10 @@ class RoutePage {
             }),
       ],
       redirect: (context, state) {
-        if (!appStateManager!.loggedIn) {
-          return '/login';
-        } else {
-          return state.subloc;
-        }
+       if(state.subloc == '/'){
+         if (!appStateManager!.loggedIn) {
+           return '/login';
+         }
+       }
       });
 }

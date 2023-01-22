@@ -39,14 +39,16 @@ class AppStateManager extends ChangeNotifier {
                   content: Text("Email dan Password Tidak Cocok"),
                 ),
               ),
-            loadingLogin = false,
-            notifyListeners(),
+              loadingLogin = false,
+              notifyListeners(),
             });
   }
+
   void loadingAction(bool value) {
     _loadingLogin = value;
     notifyListeners();
   }
+
   void logout() async {
     _loggedIn = false;
     _prefs.remove('token');
@@ -56,7 +58,6 @@ class AppStateManager extends ChangeNotifier {
   }
 
   Future<void> initializeApp() async {
-    print(_prefs.getBool('login'));
     _loggedIn = _prefs.getBool('login') ?? false;
   }
 }
