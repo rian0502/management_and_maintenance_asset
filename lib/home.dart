@@ -20,12 +20,14 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text('SIMAS'),
         actions: [
-          Switch(value: _isDark, onChanged: (value){
-            Provider.of<ThemaState>(context, listen: false).darkMode(value);
-            setState(() {
-              _isDark = !_isDark;
-            });
-          })
+          Switch(
+              value: _isDark,
+              onChanged: (value) {
+                Provider.of<ThemaState>(context, listen: false).darkMode(value);
+                setState(() {
+                  _isDark = !_isDark;
+                });
+              })
         ],
       ),
       body: Center(
@@ -43,9 +45,11 @@ class _HomeState extends State<Home> {
             menu('Pemasok', 'assets/images/supplier.png', '/supplier'),
             menu('Kategori', 'assets/images/categories.png', '/categories'),
             menu('Lokasi', 'assets/images/location.png', '/location'),
-            ElevatedButton(onPressed: (){
-              Provider.of<AppStateManager>(context, listen: false).logout();
-            }, child: const Text('Logout')),
+            ElevatedButton(
+                onPressed: () {
+                  Provider.of<AppStateManager>(context, listen: false).logout();
+                },
+                child: const Text('Logout')),
           ],
         ),
       ),
@@ -81,7 +85,7 @@ class _HomeState extends State<Home> {
             ),
             Text(
               title,
-              style:  GoogleFonts.poppins(
+              style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w600,
               ),

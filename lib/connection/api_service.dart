@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:gudang/models/detail_asset.dart';
 import '../models/assets.dart';
 import '../models/categories.dart';
 import '../models/locations.dart';
@@ -287,6 +288,15 @@ class APIService {
       return 1;
     } else {
       return 0;
+    }
+  }
+  static Future<DetailAsset> detailAsset(String uuid) async {
+    var dio = Dio();
+    var request = await dio.get("${_BASE_URL}assets/$uuid");
+    if (request.statusCode == 200) {
+      return DetailAsset.fromJson(request.data);
+    } else {
+      throw Exception("Failed to load data");
     }
   }
 

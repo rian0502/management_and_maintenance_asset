@@ -11,6 +11,7 @@ import 'package:gudang/screens/maintenance_screen.dart';
 import 'package:gudang/screens/manufactur_screen.dart';
 import 'package:gudang/screens/mechanic_screen.dart';
 import 'package:gudang/screens/model_screen.dart';
+import '../components/view_asset_screen.dart';
 import '../models/locations.dart' as locations;
 import '../models/categories.dart' as categories;
 import '../models/mechanic.dart' as mehcnic;
@@ -57,6 +58,14 @@ class RoutePage {
             builder: (context, state) {
               return EditAssetScreen(
                 asset: state.extra as assets.Data,
+              );
+            }),
+        GoRoute(
+            path: '/viewAsset',
+            name: 'viewAsset',
+            builder: (context, state) {
+              return ViewAssetScreen(
+                uuid: state.extra as String,
               );
             }),
         GoRoute(
@@ -180,10 +189,10 @@ class RoutePage {
                   location: state.extra as locations.Data);
             }),
       ],
-      redirect: (context, state){
+      redirect: (context, state) {
         if (!appStateManager!.loggedIn) {
           return '/login';
-        }else{
+        } else {
           return state.subloc ?? '/';
         }
         return null;
