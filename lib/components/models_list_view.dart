@@ -30,7 +30,7 @@ class _ModelsListViewState extends State<ModelsListView> {
                     if(value == 1){
                       context.push('/editModel', extra: widget.models![index]);
                     }else{
-                      print(widget.models![index].namaModel);
+                      context.push('/viewModel', extra: widget.models![index].uuid);
                     }
                   },
                 )

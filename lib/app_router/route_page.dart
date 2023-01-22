@@ -11,7 +11,7 @@ import 'package:gudang/screens/maintenance_screen.dart';
 import 'package:gudang/screens/manufactur_screen.dart';
 import 'package:gudang/screens/mechanic_screen.dart';
 import 'package:gudang/screens/model_screen.dart';
-import '../components/view_asset_screen.dart';
+import '../screens/view_asset_screen.dart';
 import '../models/locations.dart' as locations;
 import '../models/categories.dart' as categories;
 import '../models/mechanic.dart' as mehcnic;
@@ -34,6 +34,7 @@ import '../screens/edit_manufactur_screen.dart';
 import '../screens/edit_mechanic_screen.dart';
 import '../screens/location_screen.dart';
 import '../screens/supplier_screen.dart';
+import '../screens/view_model_screen.dart';
 import '../state_manager/app_state_manager.dart';
 
 class RoutePage {
@@ -103,6 +104,14 @@ class RoutePage {
               final model = state.extra as models.Data;
               return EditModelScreen(
                 model: model,
+              );
+            }),
+        GoRoute(
+            path: '/viewModel',
+            name: 'viewModel',
+            builder: (context, state) {
+              return ViewModelScreen(
+                uuid: state.extra as String,
               );
             }),
         GoRoute(
@@ -193,8 +202,7 @@ class RoutePage {
         if (!appStateManager!.loggedIn) {
           return '/login';
         } else {
-          return state.subloc ?? '/';
+          return state.subloc;
         }
-        return null;
       });
 }

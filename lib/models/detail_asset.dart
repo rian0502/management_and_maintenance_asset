@@ -40,17 +40,17 @@ class DetailAsset {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['uuid'] = this.uuid;
-    data['nama_model'] = this.namaModel;
-    data['no_model'] = this.noModel;
-    data['serial'] = this.serial;
-    data['location'] = this.location;
-    data['supplier'] = this.supplier;
-    data['nama_asset'] = this.namaAsset;
-    data['purchase_date'] = this.purchaseDate;
-    data['order_number'] = this.orderNumber;
-    data['notes'] = this.notes;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['uuid'] = uuid;
+    data['nama_model'] = namaModel;
+    data['no_model'] = noModel;
+    data['serial'] = serial;
+    data['location'] = location;
+    data['supplier'] = supplier;
+    data['nama_asset'] = namaAsset;
+    data['purchase_date'] = purchaseDate;
+    data['order_number'] = orderNumber;
+    data['notes'] = notes;
     return data;
   }
 }
