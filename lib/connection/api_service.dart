@@ -370,4 +370,18 @@ class APIService {
     });
     return request.data['token'];
   }
+  static Future<int> register(String name, String email, String password) async {
+    var dio = Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    var request = await dio.post("${_BASE_URL}register", data: {
+      "name": name,
+      "email": email,
+      "password": password,
+    });
+    if (request.statusCode == 200) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 }
