@@ -45,11 +45,43 @@ class _HomeState extends State<Home> {
             menu('Pemasok', 'assets/images/supplier.png', '/supplier'),
             menu('Kategori', 'assets/images/categories.png', '/categories'),
             menu('Lokasi', 'assets/images/location.png', '/location'),
-            ElevatedButton(
-                onPressed: () {
-                  Provider.of<AppStateManager>(context, listen: false).logout();
-                },
-                child: const Text('Logout')),
+            InkWell(
+              onTap: () {
+                Provider.of<AppStateManager>(context, listen: false).logout();
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      child: Image.asset('assets/images/shutdown.png'),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      'Logout',
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

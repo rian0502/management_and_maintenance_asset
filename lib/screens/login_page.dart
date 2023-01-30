@@ -21,14 +21,12 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 250,
-                    width: 250,
+                    height: 350,
+                    width: 350,
                     child: Image.asset('assets/images/logo.png'),
                   ),
-                  const SizedBox(height: 20),
                   SizedBox(
                     width: 300,
                     child: TextField(
@@ -65,9 +63,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  TextButton(onPressed: () {
-                    context.push('/register');
-                  }, child: const Text('Register')),
+                  TextButton(
+                      onPressed: () {
+                        context.push('/register');
+                      },
+                      child: const Text('Register')),
                 ],
               ),
             )
