@@ -86,7 +86,7 @@ class _EditMechanicScreenState extends State<EditMechanicScreen> {
                       }
                     });
                   }
-                }, child: Text('Simpan'))
+                }, child: const Text('Simpan'))
               ],
             )
           ],
