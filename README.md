@@ -1,6 +1,6 @@
 # gudang
 
-A new Flutter project.
+Aplikasi untuk sistem management and maintenance asset di PT Bukit Asam Tbk, Unit Pelabuhan Tarahan
 
 ## Getting Started
 
