@@ -220,21 +220,20 @@ class _EditAssetScreenState extends State<EditAssetScreen> {
                               {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text('Data berhasil ditambahkan'),
+                                    content: Text('Data berhasil diubah'),
                                   ),
                                 ),
-                                Navigator.pop(context),
+                                context.pop(),
                               }
                             else
                               {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text('Data gagal ditambahkan'),
+                                    content: Text('Data gagal diubah'),
                                   ),
                                 ),
                               }
                           });
-                  context.pop();
                 }
               },
               child: const Text("Simpan Asset"),

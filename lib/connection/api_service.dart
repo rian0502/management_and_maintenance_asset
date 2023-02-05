@@ -289,8 +289,8 @@ class APIService {
     var dio = Dio();
     var request = await dio.put("${_BASE_URL}assets/$uuid", data: {
       "id_model": idModel,
-      "id_supplier": idSupplier,
       "id_location": idLocation,
+      "id_supplier": idSupplier,
       "nama_asset": namaAset,
       "purchase_date": purchaseDate,
       "order_number": orderNumber,

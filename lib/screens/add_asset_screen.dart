@@ -22,6 +22,17 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
   final TextEditingController _controllerKodeOrder = TextEditingController();
   final TextEditingController _controllerKeterangan = TextEditingController();
   final TextEditingController _controllerDatePicker = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controllerNameAset.dispose();
+    _controllerKodeOrder.dispose();
+    _controllerKeterangan.dispose();
+    _controllerDatePicker.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
