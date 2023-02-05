@@ -1,5 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gudang/connection/api_service.dart';
 import '../connection/api_dropdown.dart';
@@ -15,6 +16,8 @@ class AddAssetScreen extends StatefulWidget {
 }
 
 class _AddAssetScreenState extends State<AddAssetScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   late String _uuidModel;
   late String _uuidLocation;
   late String _uuidSupplier;
@@ -36,6 +39,7 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: _appBar,
       body: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -203,7 +207,7 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
                               {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text('Data berhasil ditambahkan'),
+                                    content: Text('Berhasil menambah asset'),
                                   ),
                                 ),
                                 context.pop(),
@@ -212,12 +216,11 @@ class _AddAssetScreenState extends State<AddAssetScreen> {
                               {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text('Data gagal ditambahkan'),
+                                    content: Text('Gagal menambah asset'),
                                   ),
                                 ),
                               }
                           });
-                  context.pop();
                 }
               },
               child: const Text("Tambah Asset"),
