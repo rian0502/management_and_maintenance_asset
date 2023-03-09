@@ -12,7 +12,7 @@ import '../models/models_barang.dart';
 import '../models/suppliers.dart';
 
 class APIService {
-  static const String _BASE_URL = "http://mfrh.me/smmapeltar/api/";
+  static const String _BASE_URL = "http://smma.hasibuanapp.site/api/";
 
   static Future<Locations> getAllLocation() async {
     var dio = Dio();

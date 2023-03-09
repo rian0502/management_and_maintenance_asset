@@ -121,7 +121,7 @@ class _AddModelScreensState extends State<AddModelScreens> {
                           );
                         } else {
                           APIService.addModels(_namaModel.text, _uuidManufactur,
-                                  _uuidCategori, _kodeModel.text)
+                              _uuidCategori, _kodeModel.text)
                               .then((value) {
                             if (value == 1) {
                               ScaffoldMessenger.of(context).showSnackBar(

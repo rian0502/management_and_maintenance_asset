@@ -8,7 +8,7 @@ import 'package:gudang/models/mechanic.dart' as mechanic;
 import 'package:gudang/models/assets.dart' as assets;
 
 class APIDropDown {
-  static const String _BASE_URL = "http://mfrh.me/smmapeltar/api/";
+  static const String _BASE_URL = "http://smma.hasibuanapp.site/api/";
 
   static Future<List<manufactur.Data>> getAllManufacturer() async {
     var dio = Dio();
