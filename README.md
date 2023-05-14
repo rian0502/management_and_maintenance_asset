@@ -13,15 +13,5 @@ Aplikasi untuk sistem management and maintenance asset di PT Bukit Asam Tbk, Uni
 ![image](https://user-images.githubusercontent.com/83405871/216774877-23441dda-670a-4356-9ba4-6f80b4c335d7.png)
 ![image](https://user-images.githubusercontent.com/83405871/216774884-910a327a-e628-4e3b-8f9f-3f28411fcff9.png)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+File Laporan
+[2017051033_Management_and_Maintenance_Asset.pdf](https://github.com/rian0502/management_and_maintenance_asset/files/11470914/2017051033_Management_and_Maintenance_Asset.pdf)
