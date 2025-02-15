@@ -55,4 +55,4 @@ Memudahkan pencatatan, pengelolaan, dan pemantauan aset perusahaan secara digita
 ---
 
 ## 📝 **Lisensi**  
-Hak cipta © 2025 PT Bukit Asam Tbk. Semua hak dilindungi.  
+Hak cipta © 2025 Muhammad Febrian Hasibuan. Semua hak dilindungi.  
