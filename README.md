@@ -1,8 +1,7 @@
 # 📦 SIMAS – Asset Management and Maintenance System  
 
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)  
-![Version](https://img.shields.io/badge/Version-1.0.0-blue)  
-![License](https://img.shields.io/badge/License-PTBA-orange)  
+![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 
 Aplikasi untuk **sistem manajemen dan pemeliharaan aset** di **PT Bukit Asam Tbk, Unit Pelabuhan Tarahan**.  
 Memudahkan pencatatan, pengelolaan, dan pemantauan aset perusahaan secara digital.
